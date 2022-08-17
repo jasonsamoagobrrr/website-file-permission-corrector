@@ -35,6 +35,8 @@ func main() {
 		path = flag.Arg(0)
 	}
 
+	// TODO: add domain / web root detection via apache config file parsing or some other way
+
 	// map files
 	mapFiles(path)
 
