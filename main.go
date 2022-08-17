@@ -10,7 +10,6 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
-	"time"
 )
 
 var files []string
@@ -89,15 +88,10 @@ func main() {
 		outputWG.Done()
 	}()
 	// close up channels when done processing
-	func() {
-		processWG.Wait()
-		close(fileChan)
-		outputWG.Wait()
-		close(output)
-	}()
-
-	//sleep just a bit
-	time.Sleep(1 * time.Second)
+	processWG.Wait()
+	close(fileChan)
+	close(output)
+	
 }
 
 func detectDir(path string) (bool, error) {
